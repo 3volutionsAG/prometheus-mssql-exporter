@@ -400,6 +400,15 @@ const metrics = [
   mssql_os_sys_memory,
 ];
 
+if (process.env["CUSTOM_METRICS"]) {
+    const customMetrics = require(process.env["CUSTOM_METRICS"]);
+    if (Array.isArray(customMetrics)) {
+        metrics = metrics.concat(customMetrics);
+    } else {
+        debug("Custom metrics file: expected array, got " + Object.prototype.toString.call(customMetrics));
+    }
+}
+
 module.exports = {
   client: client,
   mssql_up,
