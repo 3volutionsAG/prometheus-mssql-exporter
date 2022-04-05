@@ -107,6 +107,33 @@ npm run metrics
   - metrics for metrics executions logging
   - db for database connection logging
   - queries for database queries and results logging
+- CUSTOM_METRICS: an array containing additional metrics
+
+```js
+[{
+  metrics: {
+    mssql_hallengren_commandLog: new client.Gauge({ name: "mssql_hallengren_commandlog", help: "The SQL Server Maintenance Solution comprises scripts for running backups, integrity checks, and index and statistics maintenance on all editions of Microsoft SQL" }),
+  },
+  query: `SELECT TOP (1000) [ID]
+      ,[DatabaseName]
+      ,[Command]
+      ,[CommandType]
+      ,[StartTime]
+      ,[EndTime]
+      ,[ErrorNumber]
+      ,[ErrorMessage]
+  FROM [master].[dbo].[CommandLog]
+  WHERE CommandType = 'BACKUP_DATABASE'
+  ORDER BY EndTime DESC`,
+  collect: function (rows, metrics) {
+    const page_fault_count = rows[0][0].value;
+    const memory_utilization_percentage = rows[0][1].value;
+    metricsLog("Fetched page fault count", page_fault_count);
+    metrics.mssql_page_fault_count.set(page_fault_count);
+    metrics.mssql_memory_utilization_percentage.set(memory_utilization_percentage);
+  },
+}];
+```
 
 ## Launch via command line
 
