@@ -381,7 +381,7 @@ FROM sys.dm_os_sys_memory`,
   },
 };
 
-const metrics = [
+let metrics = [
   mssql_product_version,
   mssql_instance_local_time,
   mssql_connections,
