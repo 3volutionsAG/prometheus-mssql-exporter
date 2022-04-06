@@ -401,7 +401,8 @@ const metrics = [
 ];
 
 if (process.env["CUSTOM_METRICS"]) {
-    const customMetrics = require(process.env["CUSTOM_METRICS"]);
+    const customMetricsFunc = require(process.env["CUSTOM_METRICS"]);
+    const customMetrics = customMetricsFunc.metrics();
     if (Array.isArray(customMetrics)) {
         metrics = metrics.concat(customMetrics);
     } else {
