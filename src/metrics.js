@@ -405,7 +405,7 @@ if (process.env["CUSTOM_METRICS"]) {
     if (Array.isArray(customMetrics)) {
         metrics = metrics.concat(customMetrics);
     } else {
-        debug("Custom metrics file: expected array, got " + Object.prototype.toString.call(customMetrics));
+        console.error("Custom metrics file: expected array", Object.prototype.toString.call(customMetrics));
     }
 }
 
