@@ -1,5 +1,7 @@
 # Prometheus MSSQL Exporter Docker Container
 
+> This repo is forked from [awaragi/prometheus-mssql-exporter](https://github.com/awaragi/prometheus-mssql-exporter). 
+
 Prometheus exporter for Microsoft SQL Server (MSSQL). Exposes the following metrics
 
 - mssql_product_version Instance version (Major.Minor)
@@ -30,7 +32,7 @@ Prometheus exporter for Microsoft SQL Server (MSSQL). Exposes the following metr
 
 Please feel free to submit other interesting metrics to include.
 
-> This exporter has been tested against MSSQL 2017 and 2019 docker images (only ones offered by Microsoft). Other versions might be work but have not been tested.
+> This exporter has been tested against the official MSSQL 2017 and 2019 docker images provided by Microsoft. Other versions should work as well, but have not been tested.
 
 ## Usage
 
